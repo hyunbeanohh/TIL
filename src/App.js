@@ -27,7 +27,7 @@ function App() {
     return null;
   }
 
-  const current = history[Object.keys(history).length];
+  const current = history[history.length-1];
   const winner = caculateWinner(current.squares); 
   let status;
 
@@ -43,8 +43,8 @@ function App() {
       return;
     }
     newSquares[i] = xIsNExt ? 'X' : 'O';
-    setHistory(...history , {squares : newSquares});
-    setxIsNExt(prev => !prev);
+    setHistory([...history , {squares : newSquares} ] );
+    setxIsNExt(current => !current);
     // setxIsNExt(previousState => !previousState); previousState 이름은 아무렇게나 선언 가능.
     /**
      * useState에서 setState(변수)는 함수 내에서 중복으로 실행될 수 없다.
