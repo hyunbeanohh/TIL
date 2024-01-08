@@ -6,6 +6,7 @@ function App() {
 
   const [history , setHistory] = useState([ { squares : Array(9).fill(null) } ]);
   const [xIsNExt, setxIsNExt] = useState(true);
+  
 
   const caculateWinner = (squares) => {
     const line = [
@@ -27,7 +28,8 @@ function App() {
     return null;
   }
 
-  const current = history[history.length-1];
+  const [stepNumber, setStepNumber] = useState(0);
+  const current = history[stepNumber];
   const winner = caculateWinner(current.squares); 
   let status;
 
@@ -38,13 +40,16 @@ function App() {
   }
 
   const handleClick = (i) => {
-    const newSquares = current.squares.slice();
+    const newHistory = history.slice(0, stepNumber + 1);
+    const newCurrent = newHistory[newHistory.length -1];
+    const newSquares = newCurrent.squares.slice();
     if(caculateWinner(newSquares) || newSquares[i]){
       return;
     }
     newSquares[i] = xIsNExt ? 'X' : 'O';
-    setHistory([...history , {squares : newSquares} ] );
+    setHistory([...newHistory , {squares : newSquares} ] );
     setxIsNExt(current => !current);
+    setStepNumber(newHistory.length);
     // setxIsNExt(previousState => !previousState); previousState 이름은 아무렇게나 선언 가능.
     /**
      * useState에서 setState(변수)는 함수 내에서 중복으로 실행될 수 없다.
@@ -57,11 +62,16 @@ function App() {
     const desc = move ? "Go to Step #" + move : "Go to Start";
 
     return (
-      <li key = {move}>
-        <button>{desc}</button>
+      <li key = {move}> {/* react에서 list 타입에는 key 값을 넣어줘야 렌더링을 올바르게 진행할 수 있다. index는 변조 가능성이 있어 추천하지 않는다. */}
+        <button onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     )
   })
+
+  const jumpTo = (step) => {
+    setStepNumber(step);
+    setxIsNExt((step % 2) === 0);
+  }
 
   return (
     <div className = "game">
