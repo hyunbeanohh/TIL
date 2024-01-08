@@ -53,6 +53,16 @@ function App() {
     // console.log(this.state.squares);
   }
 
+  const moves = history.map((step,move) =>{
+    const desc = move ? "Go to Step #" + move : "Go to Start";
+
+    return (
+      <li key = {move}>
+        <button>{desc}</button>
+      </li>
+    )
+  })
+
   return (
     <div className = "game">
       <div className="game-board">
@@ -65,6 +75,7 @@ function App() {
       <div className="game-info">
         <div className='status'>{status}</div>
       game-info
+      <ol>{moves}</ol>
       </div>
     </div>
   );
