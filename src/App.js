@@ -63,7 +63,7 @@ function App() {
 
     return (
       <li key = {move}> {/* react에서 list 타입에는 key 값을 넣어줘야 렌더링을 올바르게 진행할 수 있다. index는 변조 가능성이 있어 추천하지 않는다. */}
-        <button onClick={() => jumpTo(move)}>{desc}</button>
+        <button className="move-button" onClick={() => jumpTo(move)}>{desc}</button>
       </li>
     )
   })
@@ -85,7 +85,7 @@ function App() {
       <div className="game-info">
         <div className='status'>{status}</div>
       game-info
-      <ol>{moves}</ol>
+      <ol style={{listStyle : "none"}}>{moves}</ol>
       </div>
     </div>
   );
