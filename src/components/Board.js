@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Square from './Square';
 import "./Board.css";
 
@@ -11,7 +11,7 @@ const Board = ({squares,onClick}) => {
               />
   }
     return (
-      <div>
+      <div className='board-wrapper'>
         <div className='board-row'>
            {renderSquare(0)}
            {renderSquare(1)}
