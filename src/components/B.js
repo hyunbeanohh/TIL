@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 
 /**
  * React.memo() 란
@@ -45,6 +45,7 @@ const ListItem = React.memo(({post}) => {
 })
 
 const List = React.memo(({posts}) => {
+  console.log("List Components Rendering...");
   return(
     <ul>
       {posts.map((post)=>(
@@ -55,12 +56,22 @@ const List = React.memo(({posts}) => {
 })
 
 const B = ({message,posts}) => {
+  console.log("B Components Rendering...");
+  const testFunction = useCallback(() =>{
+    /**
+     * useCallback 함수를 적용하게 된다면 함수의 state 또는 props가 변하지 않는다면 함수는 새로 생성되지 않는다.
+     * (그렇기 때문에 B 컴포넌트만 렌더링되고 List 컴포넌트는 렌더링되지 않는다.)
+     * 
+     * 새로 생성되지 않기 때문에 메모리에 새로 할당되지 않고 동일 참조 값을 사용하게 된다.
+     * 의존성 배열이 없다면 컴포넌트가 최초 렌더링 시에만 함수가 생성되고 그 이후에는 동일한 참조 값을 사용하는 함수가된다.
+     */
+  },[]);
   return (
     /* 상관이 없는 부분까지 전부 렌더링 되기 때문에 A컴포넌트보다 성능이 좋지 않게 나온다. */
     <div>
       <h1>B Components</h1>
       <Message message ={message}/>
-      <List posts ={posts}/>
+      <List posts ={posts} testFunction ={testFunction}/>
     </div>
   )
 }
