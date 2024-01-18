@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useCallback, useMemo } from 'react'
 
 /**
  * React.memo() 란
@@ -54,6 +54,28 @@ const List = React.memo(({posts}) => {
     </ul>
   )
 })
+
+const Component =  ({a,b}) => {
+  // const result = testFunc(a,b);
+  // return <div>{result}</div>
+
+  /**
+   * Component내의 testFunc 함수가 만약 오래 걸릴 경우, 컴포넌트가 계속 리 렌더링 된다면
+   * 연산을 수행하는데 오랜 시간이 걸려서 성능에 안좋은 영향을 미치게 되고 UI지연 현상도 일어나게 된다.
+   * 
+   * 이러한 현상을 해결하기 위해서 사용하는 것이 useMemo이다.
+   * testFunc 함수에 넘겨주는 인자 값 a,b가 이전과 동일 하다면 컴포넌트가 리 렌더링 되더라도
+   * 연산을 다시하지 않고 이전 렌더링 때 저장해 두었던 값을 재활용하게 한다.
+   * 
+   * 
+   */
+};
+
+/*useMemo 적용하기*/
+const Component2 = ({a,b}) => {
+  // const result = useMemo(() => testFunc(a,b),[a,b]);
+  // return <div>{result}</div>
+}
 
 const B = ({message,posts}) => {
   console.log("B Components Rendering...");
