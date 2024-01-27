@@ -20,7 +20,7 @@ const Nav = () => {
   
 
   return (
-    <NavWrapper show={show}>
+    <NavWrapper $show={show}>
       <Logo>
         <img
           alt='Disney Plus logo'
@@ -40,7 +40,7 @@ const NavWrapper = styled.nav`
   left : 0;
   right : 0;
   height : 70px;
-  background-color : ${props => props.show ? "#090b13" : "transparent"};
+  background-color : ${props => props.$show ? "#090b13" : "transparent"};
   display : flex;
   justify-content : space-between;
   align-items : center;
