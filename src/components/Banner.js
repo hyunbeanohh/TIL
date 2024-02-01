@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../api/axios';
 import requests from '../api/request';
+import "./Banner.css";
 
 const Banner = () => {
 
@@ -38,7 +39,7 @@ const Banner = () => {
           {movie.title || movie.name || movie.original_name}
         </h1>
 
-        <div className='banner_button'>
+        <div className='banner_buttons'>
           {movie?.videos?.results[0]?.key &&
             <button className='banner_button play'>
               Play
