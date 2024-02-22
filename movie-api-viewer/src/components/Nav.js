@@ -5,19 +5,20 @@ const Nav = () => {
 
   const [show, setShow] = useState(false);
   useEffect(() => {
-    window.addEventListener('scroll',()=>{
-      if(window.scrollY > 50){
-        setShow(true);
-      }else{
-        setShow(false);
-      }
-    })
+    window.addEventListener('scroll',handelScroll)
   
     return () => {
-      window.removeEventListener('scroll',()=>{});
+      window.removeEventListener('scroll',handelScroll);
     }
   }, [])// 의존성 배열에 컴포넌트가 없다면 한번 실행되고 실행되지 않는다.
   
+  const handelScroll = () =>{
+    if(window.scrollY > 50){
+      setShow(true);
+    }else{
+      setShow(false);
+    }
+  }
 
   return (
     <NavWrapper $show={show}>
