@@ -1,4 +1,4 @@
-import axios from '../../../api/axios';
+import axios from '../../api/axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation , useNavigate} from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const SearchPage = () => {
 
   let query = useQuery();
   const searchTerm = query.get("q");
-  const naviagate = useNavigate(); 
+  const navigate = useNavigate(); 
   useEffect(() => { // 검색 내용을 바탕으로 영화 정보 배열에 저장
     if(searchTerm)
         fetchSearchMovie(searchTerm);
@@ -22,27 +22,30 @@ const SearchPage = () => {
     try {
         const response = await axios.get(`search/multi?include_adult=false&query=${searchTerm}`);
         setSearchResult(response.data.results);
-        console.log(response);
+        // console.log(response);
     } catch (error) {
         console.log(error);
     }
   }
 
   if(searchResult.length > 0){
-    <section className='search-container'>
-      {searchResult.map((movie)=>{
-        if(movie.backdrop_path !== null && movie.media_type !== 'person'){
-          const movieImageUrl = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
-          return(
-            <div className='movie' key={movie.id}>
-              <div className='movie__column-poster' onClick={()=> naviagate(`/${movie.id}`)}>
-                <img src = {movieImageUrl} alt ='movie' className='moive__poster'/>
+    return(
+      <section className='search-container'>
+        {searchResult.map((movie)=>{
+          if(movie.backdrop_path !== null && movie.media_type !== 'person'){
+            const movieImageUrl = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
+            console.log(searchResult);
+            return(
+              <div className='movie' key={movie.id}>
+                <div className='movie__column-poster' onClick={()=> navigate(`/${movie.id}`)}>
+                  <img src = {movieImageUrl} alt ='movie' className='moive__poster'/>
+                </div>
               </div>
-            </div>
-          )
-        }
-      })}
-    </section>
+            )
+          }
+        })}
+      </section>
+    )
   }else{
     return (
       <section className='no-results'>
