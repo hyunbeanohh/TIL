@@ -2,6 +2,7 @@ import axios from '../../api/axios';
 import React, { useEffect, useState } from 'react'
 import { useLocation , useNavigate} from 'react-router-dom';
 import './SearchPage.css'
+import { useDebounce } from '../../hooks/useDebounce';
 
 const SearchPage = () => {
 
@@ -13,11 +14,12 @@ const SearchPage = () => {
 
   let query = useQuery();
   const searchTerm = query.get("q");
+  const debouncedSearchTerm = useDebounce(searchTerm,500); 
   const navigate = useNavigate(); 
   useEffect(() => { // 검색 내용을 바탕으로 영화 정보 배열에 저장
-    if(searchTerm)
-        fetchSearchMovie(searchTerm);
-  }, [searchTerm])
+    if(debouncedSearchTerm)
+        fetchSearchMovie(debouncedSearchTerm);
+  }, [debouncedSearchTerm])
 
   const fetchSearchMovie = async (searchTerm) => {
     try {
