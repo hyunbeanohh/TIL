@@ -1,10 +1,10 @@
 import React from 'react'
-import Nav from '../../Nav'
-import Banner from '../../Banner'
-import Category from '../../Category'
-import Row from '../../Row'
+import Nav from '../../components/Nav'
+import Banner from '../../components/Banner'
+import Category from '../../components/Category'
+import Row from '../../components/Row'
 import styled from 'styled-components'
-import requests from '../../../api/request'
+import requests from '../../api/request'
 
 const MainPage = () => {
   return (
