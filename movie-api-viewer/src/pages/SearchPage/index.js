@@ -37,7 +37,7 @@ const SearchPage = () => {
         {searchResult.map((movie)=>{
           if(movie.backdrop_path !== null && movie.media_type !== 'person'){
             const movieImageUrl = 'https://image.tmdb.org/t/p/w500' + movie.backdrop_path;
-            console.log(searchResult);
+            // console.log(searchResult);
             return(
               <div className='movie' key={movie.id}>
                 <div className='movie__column-poster' onClick={()=> navigate(`/${movie.id}`)}>
