@@ -11,6 +11,7 @@ const Nav = () => {
   const navigate = useNavigate();  
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
+  const [userData, setUserData] = useState({});
 
   useEffect(() => {
     onAuthStateChanged(auth, (user)=>{
@@ -21,7 +22,7 @@ const Nav = () => {
         navigate("/");
       }
     })
-  }, [])
+  }, [auth,navigate,pathname])
   
   useEffect(() => {
     window.addEventListener('scroll',handelScroll)
@@ -46,7 +47,9 @@ const Nav = () => {
 
   const handleAuth = () =>{
     signInWithPopup(auth,provider)
-    .then(result =>{})
+    .then(result =>{
+      setUserData(result.user);
+    })
     .catch(error =>{
       console.log(error);
     })
@@ -63,18 +66,37 @@ const Nav = () => {
 
       {pathname === "/" ?
        (<Login onClick={handleAuth()}>Login</Login>) : 
-       <Input 
-        className='nav__input'
-        type='text'
-        placeholder='영화를 검색해주세요.'
-        value = {searchValue}
-        onChange={handleChange}
-        />}
+       <>
+        <Input 
+          className='nav__input'
+          type='text'
+          placeholder='영화를 검색해주세요.'
+          value = {searchValue}
+          onChange={handleChange}
+          />
+
+          <SignOut>
+              <UserImg src={userData.photoURL} alt={userData.displayName}/>
+              <DropDown>
+                <span>Sign Out</span>
+              </DropDown>
+          </SignOut>
+        </>
+      }
     </NavWrapper>
   )
 }
 
 export default Nav
+
+const SignOut = styled.div`
+`;
+
+const UserImg = styled.div`
+`;
+
+const DropDown = styled.div`
+`;
 
 const Login = styled.a`
   background-color: rgba(0,0,0,0.6);
