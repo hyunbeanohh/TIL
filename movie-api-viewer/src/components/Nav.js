@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Nav = () => {
+  const initialUserData = localStorage.getItem('userData') ?
+  JSON.parse(localStorage.getItem('userData')) : {};
 
   const [show, setShow] = useState(false);
   const { pathname } = useLocation();
@@ -11,7 +13,7 @@ const Nav = () => {
   const navigate = useNavigate();  
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(initialUserData);
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -50,6 +52,7 @@ const Nav = () => {
     signInWithPopup(auth,provider)
     .then(result =>{
       setUserData(result.user);
+      localStorage.setItem('userData',JSON.stringify(result.user));
     })
     .catch(error =>{
       console.log(error);
