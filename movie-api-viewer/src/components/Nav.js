@@ -1,9 +1,11 @@
-import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut } from 'firebase/auth';
 import React, { useState,useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components'
 
 const Nav = () => {
+  const initialUserData = localStorage.getItem('userData') ?
+  JSON.parse(localStorage.getItem('userData')) : {};
 
   const [show, setShow] = useState(false);
   const { pathname } = useLocation();
@@ -11,13 +13,14 @@ const Nav = () => {
   const navigate = useNavigate();  
   const auth = getAuth();
   const provider = new GoogleAuthProvider();
-  const [userData, setUserData] = useState({});
+  const [userData, setUserData] = useState(initialUserData);
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user)=>{
+    onAuthStateChanged(auth, (user) => {
       if(user){
-        if(pathname === "/")
+        if(pathname === "/"){
           navigate("/main");
+        }
       }else{
         navigate("/");
       }
@@ -49,11 +52,22 @@ const Nav = () => {
     signInWithPopup(auth,provider)
     .then(result =>{
       setUserData(result.user);
+      localStorage.setItem('userData',JSON.stringify(result.user));
     })
     .catch(error =>{
       console.log(error);
     })
   }
+
+  const handleSignOut = () => {
+    signOut(auth).then(()=>{
+      setUserData({});
+      navigate(`/`);
+    }).catch((error)=>{
+      console.log(error);
+    })
+  };
+  
   return (
     <NavWrapper $show={show}>
       <Logo>
@@ -65,7 +79,7 @@ const Nav = () => {
       </Logo>
 
       {pathname === "/" ?
-       (<Login onClick={handleAuth()}>Login</Login>) : 
+       (<Login onClick={handleAuth}>Login</Login>) : 
        <>
         <Input 
           className='nav__input'
@@ -78,7 +92,7 @@ const Nav = () => {
           <SignOut>
               <UserImg src={userData.photoURL} alt={userData.displayName}/>
               <DropDown>
-                <span>Sign Out</span>
+                <span onClick={handleSignOut}>Sign Out</span>
               </DropDown>
           </SignOut>
         </>
@@ -89,13 +103,42 @@ const Nav = () => {
 
 export default Nav
 
-const SignOut = styled.div`
-`;
-
-const UserImg = styled.div`
-`;
-
 const DropDown = styled.div`
+  position: absolute;
+  top: 48px;
+  right: 0px;
+  background: rgb(19, 19, 19)
+  border: 1px solid rgba(151, 151, 151, 0.34);
+  border-radius:  4px;
+  box-shadow: rgb(0 0 0 /50%) 0px 0px 18px 0px;
+  padding: 10px;
+  font-size: 14px;
+  letter-spacing: 3px;
+  width: 100%;
+  opacity: 0;
+`;
+
+const SignOut = styled.div`
+  position: relative;
+  height: 48px;
+  width: 48px;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    ${DropDown} {
+      opacity: 1;
+      transition-duration: 1s;
+    }
+  }
+`;
+
+const UserImg = styled.img`
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
 `;
 
 const Login = styled.a`
