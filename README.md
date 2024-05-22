@@ -11,3 +11,4 @@
 > react 18v+
 #### [woowahan-typescript](https://github.com/hyunbeanohh/TIL/tree/main/woowahan-typescript)
 + 우아한 타입스크립트 with 리액트 책을 통해 타입스크립트와 리액트를 어떻게 실무에 적용할 수 있는지 이해했어요.
+> react , typescript
