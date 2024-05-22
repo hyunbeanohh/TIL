@@ -1,5 +1,4 @@
-### fastcampus-study
-> 패스트 캠퍼스에서 공부한 강의들을 모아둔 레포지토리에요.
+### for FrontEnd Developer Skill up
 
 #### [tictactoe-react-study](https://github.com/hyunbeanohh/fastcampus-study/tree/main/tictactoe-react-study)
 + 리액트 가이드 문서에 있는 tictactoe를 구현하면서 리액트에 대한 전반적인 이해를 했어요.
@@ -10,3 +9,5 @@
 #### [movie-api-viewer](https://github.com/hyunbeanohh/fastcampus-study/tree/main/movie-api-viewer)
 + 영화 API를 통해 최신 영화 순위와 주제에 맞는 영화를 보여줄 수 있는 웹 서비스를 만들었어요.
 > react 18v+
+#### [woowahan-typescript](https://github.com/hyunbeanohh/TIL/tree/main/woowahan-typescript)
++ 우아한 타입스크립트 with 리액트 책을 통해 타입스크립트와 리액트를 어떻게 실무에 적용할 수 있는지 이해했어요.
