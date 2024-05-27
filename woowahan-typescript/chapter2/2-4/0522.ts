@@ -44,3 +44,9 @@ interface INoticePopup{
 }
 const noticePopup : NoticePopupType = {...};
 const noticePopup2 : INoticePopup = {...};
+
+/**
+ * 타입스크립트에는 일반적으로 변수타입을 명시적으로 선언하지 않아도 컴파일러가 자동으로 타입을 추론한다.
+ * 이 말은, 타입스크립트 컴파일러가 변수 아용 방식과 할당된 값의 타입을 분석해서 타입을 유추한다는 것을 의미한다.
+ * 따라서 모든 변수에 타입을 일일이 명시적으로 선언할 필요가 없다.
+ */
