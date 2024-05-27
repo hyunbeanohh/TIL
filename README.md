@@ -1,4 +1,4 @@
-### For FrontEnd Developer Skill up
+### For FrontEnd Development Skill up
 
 #### [tictactoe-react-study](https://github.com/hyunbeanohh/fastcampus-study/tree/main/tictactoe-react-study)
 + 리액트 가이드 문서에 있는 tictactoe를 구현하면서 리액트에 대한 전반적인 이해를 했어요.
