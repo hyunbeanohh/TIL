@@ -12,3 +12,6 @@
 #### [woowahan-typescript](https://github.com/hyunbeanohh/TIL/tree/main/woowahan-typescript)
 + 우아한 타입스크립트 with 리액트 책을 통해 타입스크립트와 리액트를 어떻게 실무에 적용할 수 있는지 이해했어요.
 > ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) , ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+#### [react-context-api](https://github.com/hyunbeanohh/TIL/tree/main/context-api-app)
++ 리액트의 ContextAPI를 통해 상태를 관리하는 전반적인 방법에 대해서 이해했어요.
+> ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
