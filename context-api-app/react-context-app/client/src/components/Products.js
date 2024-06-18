@@ -10,7 +10,7 @@ const Products = ({name,imagePath}) => {
         alt={`${name} products`}
       />
 
-      <form style={{marginTop: '10ox'}}>
+      <form style={{marginTop: '10px'}}>
         <label style ={{textAlign: 'right'}}>{name}</label>
         <input
           style={{marginLeft: '7px'}}
