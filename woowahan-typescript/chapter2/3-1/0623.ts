@@ -27,3 +27,9 @@ state.foo.bar = () => console.log("test");
  * 예를 들어 API 요청 및 응답 처리, 콜백 함수 전달, 타입이 잘 정제되지 않아 파악이 힘든 외부 라이브러리 등
  * 주고받을 값이 명확하지 않을 때 열린 타입인 any 타입을 사용할 수 있다.
  */
+
+async function load() {
+    const res = await fetch('http://..');
+    const data = await res.json(); //response.json()의 리턴 타입은 Primise<any>로 정의 돼 있다.
+    return data;
+}
