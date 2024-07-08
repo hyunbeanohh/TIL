@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './reducers';
+import axios from 'axios';
 
 type Props = {
   value : any;
@@ -15,6 +16,24 @@ function App({value,onIncrement,onDecrement} : Props) {
   const todos = useSelector((state:RootState) => state.todos);
 
   const [todoValue, settodoValue] = useState("");
+
+  useEffect(() => {
+    dispatch(fetchPosts())
+  }, [dispatch])
+  /**
+   * 원래 Actions는 객체여야 하는데 현재는 함수를 Dispatch 해주고 있다.
+   * 그렇기 때문에 에러가 발생하고 , 함수를 Dispatch 할 수 있게 해주는 redux-thunk 미들웨어를 설치해야 한다.
+   * 
+   */
+
+  const fetchPosts = () : any => {
+    return async function fetchPostsThunk(dispatch:any, getState:any) {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+      dispatch({type: "FETCH_POSTS", payload: response.data})
+    }
+  }
+  
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     settodoValue(e.target.value);
   }

@@ -5,7 +5,7 @@ import App from './App';
 import { StoreEnhancer, applyMiddleware, createStore } from 'redux';
 import rootReducer from './reducers';
 import { Provider } from 'react-redux';
-
+import thunk from 'redux-thunk';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -17,8 +17,8 @@ const loggerMiddleware = (store:any) => (next:any) => (action:any) => {
   next(action);
 }
 
-const middleware: StoreEnhancer = applyMiddleware(loggerMiddleware);
-const store = createStore(rootReducer,undefined,middleware);
+const middleware: StoreEnhancer = applyMiddleware(thunk,loggerMiddleware);
+const store = createStore(rootReducer,middleware);
 
 const render = () => root.render(
   <React.StrictMode>
