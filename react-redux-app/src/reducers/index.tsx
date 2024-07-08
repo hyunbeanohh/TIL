@@ -7,6 +7,7 @@ const rootReducer = combineReducers({
     counter,
     todos,
     posts
+
 })
 
 export default rootReducer;
