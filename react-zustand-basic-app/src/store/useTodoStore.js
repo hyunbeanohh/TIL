@@ -1,9 +1,9 @@
-import create from 'zustand'
+import {create} from 'zustand'
 
-const useTodoStore = () => create((set) => ({
+export const useTodoStore = create((set) => ({
     todos: [],
     addTodo : (todoText) =>
-        set( state =>({
+        set( (state) =>({
             todos:[
                 ...state.todos,
                 {
@@ -14,16 +14,16 @@ const useTodoStore = () => create((set) => ({
             ]
         })),
     deleteTodo: (todoId) =>
-            set( state => ({
+            set( (state) => ({
                 todos: state.todos.filter((todo) => todo.id !== todoId)
             })),
     completeTodo : (todoId) =>
-        set( state => ({
+        set( (state) => ({
             todos : state.todos.map((todo) => {
                 if(todo.id === todoId){
                     return {
                         ...todo,
-                        isCompleted: !todo.isCompleted
+                        isCompleted: true
                     }
                 }
                 return todo
@@ -36,5 +36,3 @@ let id = 0;
 function getId(){
     return id++;
 }
-
-export default useTodoStore
