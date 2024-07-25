@@ -18,3 +18,6 @@
 #### [react-reducer-api](https://github.com/hyunbeanohh/TIL/tree/main/react-redux-app)
 + 리액트에서 상태관리를 할 수 있도록 지원하는 redux를 통해 상태를 관리하는 전반적인 방법에 대해서 이해하고 redux의 특성에 대해서 이해했어요.
 > ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB), ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white)
+#### [react-zustand-basic-app](https://github.com/hyunbeanohh/TIL/tree/main/react-zustand-basic-app)
++ 리액트에서 상태관리를 할 수 있도록 지원하는 zustand를 통해 상태를 관리하는 전반적인 방법에 대해서 이해하고 zustand의 특성에 대해서 이해했어요.
+> ![Zustand](https://img.shields.io/badge/zustand-1e394e.svg?style=for-the-badge&logo=zustand&logoColor=white)
